@@ -18,5 +18,6 @@ public:
     void AddModule(Module* _module);
     void AddModules(std::vector<Module*> _modules);
     std::vector<Module*> getModules();
+    void RemoveModule(Module* _module);
 };
 

@@ -40,3 +40,11 @@ std::vector<Module*> Student::getModules()
 {
 	return modules;
 }
+
+void Student::RemoveModule(Module* _module)
+{
+	std::vector<Module*>::iterator iterator;
+	iterator = std::find(modules.begin(), modules.end(), _module);
+
+	modules.erase(iterator);
+}

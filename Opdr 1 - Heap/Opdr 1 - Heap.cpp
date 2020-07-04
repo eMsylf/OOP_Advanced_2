@@ -69,6 +69,7 @@ int main()
 
     std::cout << "\n4) Verwijder student uit module, & toon lijst opnieuw\n";
     ITTT->removeStudent(Pietje);
+    ITTT->removeStudent(Pietje);
     ShowECPerStudent(students);
 
 

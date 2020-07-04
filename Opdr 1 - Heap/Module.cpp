@@ -1,4 +1,5 @@
 #include "Module.h"
+#include <iostream>
 
 Module::Module(std::string _name)
 {
@@ -57,5 +58,13 @@ void Module::setStudents(std::vector<Student*> _students)
 
 void Module::removeStudent(Student* _student)
 {
-    std::find(students.begin(), students.end(), _student) != students.end();
+    std::vector<Student*>::iterator iterator;
+    iterator = std::find(students.begin(), students.end(), _student);
+    if (iterator == students.end()) {
+        std::cout << "Tried to remove student " + _student->getName() + ", but this student does not follow the module " + this->getName() + '\n';
+        return;
+    }
+
+    students.erase(iterator);
+    _student->RemoveModule(this);
 }
