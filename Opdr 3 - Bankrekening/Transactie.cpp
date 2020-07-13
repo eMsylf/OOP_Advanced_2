@@ -19,4 +19,6 @@ Transactie::Transactie(float _bedrag, std::string _datum)
 		afBij = AfBij::Af;
 	if (_bedrag > 0)
 		afBij = AfBij::Bij;
+	bedrag = _bedrag;
+	datum = _datum;
 }

@@ -10,11 +10,13 @@ int main()
     Bankrekening rekening = Bankrekening();
     std::cout << "created rekening" << std::endl;
     Transactie* transactie = new Transactie(5.0f, "vandaag");
-    std::cout << "created transaction" << std::endl;
-    rekening = rekening + *transactie;
+    Transactie* transactie2 = new Transactie(-100.f, "gisteren");
+
+    std::cout << "created transactions" << std::endl;
+    rekening = rekening + *transactie + *transactie2;
     std::cout << "added transaction to rekening" << std::endl;
     // ISSUE: insertion operator causes nullpointer in vector class
-    std::cout << rekening;
+    std::cout << rekening << std::endl;
 
     return 0;
 }
