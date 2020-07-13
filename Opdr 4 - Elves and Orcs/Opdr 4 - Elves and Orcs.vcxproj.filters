@@ -27,6 +27,9 @@
     <ClCompile Include="Orc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Profession.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Orc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Profession.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
