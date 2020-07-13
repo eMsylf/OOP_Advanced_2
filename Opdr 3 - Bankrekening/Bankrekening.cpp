@@ -15,10 +15,10 @@ Bankrekening::Bankrekening(float _saldo, std::vector<Transactie>* _transactions)
 
 Bankrekening Bankrekening::operator+(const Transactie& transaction) const
 {
-	std::cout << "+ Operator start" << std::endl;
+	//std::cout << "+ Operator start" << std::endl;
 	Transactie* newTransaction = new Transactie(transaction.bedrag, transaction.datum);
 	transactions->push_back(*newTransaction);
-	std::cout << "+ Operator end" << std::endl;
+	//std::cout << "+ Operator end" << std::endl;
 	return Bankrekening(saldo + newTransaction->bedrag, transactions);
 }
 
@@ -35,21 +35,28 @@ Bankrekening& Bankrekening::operator+=(const Transactie& transaction)
 	return *this;
 }
 
+//Bankrekening& Bankrekening::operator-=(const Transactie& transaction)
+//{
+//	saldo -= transaction.bedrag;
+//	transactions->push_back(transaction);
+//	return *this;
+//}
+
 Bankrekening& Bankrekening::operator=(const Bankrekening& bankrekening)
 {
-	std::cout << "Equals operator start" << std::endl;
+	//std::cout << "Equals operator start" << std::endl;
 	if (this != &bankrekening) {
 		//std::cout << "assignment: " << std::endl;
 		this->saldo = bankrekening.saldo;
 		this->transactions = bankrekening.transactions;
 	}
-	std::cout << "Equals operator end" << std::endl;
+	//std::cout << "Equals operator end" << std::endl;
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, const Bankrekening& bankrekening)
 {
-	std::cout << "Insertion operator start" << std::endl;
+	//std::cout << "Insertion operator start" << std::endl;
 	//out << "Balance before transaction: " << bankrekening.saldo << std::endl;
 	AfBijString converter;
 	if (bankrekening.transactions == nullptr) {
@@ -76,3 +83,8 @@ std::ostream& operator<<(std::ostream& out, const Bankrekening& bankrekening)
 
 	return out;
 }
+
+//std::istream& operator>>(std::ostream& in, Bankrekening& bankrekening)
+//{
+//	in >> 
+//}

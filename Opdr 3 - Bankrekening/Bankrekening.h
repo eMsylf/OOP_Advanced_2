@@ -16,9 +16,11 @@ public:
 	Bankrekening operator+ (const Transactie& transaction) const;
 	Bankrekening operator- (const Transactie& transaction) const;
 	Bankrekening& operator+= (const Transactie& transaction);
+	//Bankrekening& operator-=(const Transactie& transaction);
+
 
 	Bankrekening& operator= (const Bankrekening& bankrekening);
 	friend std::ostream& operator << (std::ostream& out, const Bankrekening& bankrekening);
-	friend std::istream& operator >> (std::ostream& in, Bankrekening& bankrekening);
+	//friend std::istream& operator >> (std::ostream& in, Bankrekening& bankrekening);
 };
 
