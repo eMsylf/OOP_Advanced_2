@@ -1,7 +1,14 @@
 #pragma once
 #include <iostream>
-class Profession
+#include "NPC.h"
+
+class Profession : public NPC
 {
+private:
+	NPC* theNPC;
 public :
-	virtual void render() = 0;
+	Profession(NPC* _npc);
+	virtual ~Profession();
+
+	virtual void render();
 };

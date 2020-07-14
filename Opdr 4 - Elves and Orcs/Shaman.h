@@ -4,6 +4,9 @@ class Shaman :
 	public Profession
 {
 public:
+	Shaman(NPC* _npc);
+	virtual ~Shaman();
+
 	void render();
 };
 

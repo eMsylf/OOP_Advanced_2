@@ -1,7 +1,16 @@
 #include "Farmer.h"
 
 
+Farmer::Farmer(NPC* _npc) : Profession(_npc)
+{
+}
+
+Farmer::~Farmer()
+{
+}
+
 void Farmer::render()
 {
-	std::cout << "This renders a farmer" << std::endl;
+	Profession::render();
+	std::cout << "Farmer" << std::endl;
 }
