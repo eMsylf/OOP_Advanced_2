@@ -140,16 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Elf.cpp" />
+    <ClCompile Include="Farmer.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Opdr 4 - Elves and Orcs.cpp" />
     <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Profession.cpp" />
+    <ClCompile Include="Shaman.cpp" />
+    <ClCompile Include="Soldier.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Elf.h" />
+    <ClInclude Include="Farmer.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Profession.h" />
+    <ClInclude Include="Shaman.h" />
+    <ClInclude Include="Soldier.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

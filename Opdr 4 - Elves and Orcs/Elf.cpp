@@ -7,5 +7,5 @@ Elf::Elf(std::string _name)
 
 void Elf::render()
 {
-	std::cout << "Render an Elf";
+	std::cout << "Render an Elf with the name " + name << std::endl;
 }

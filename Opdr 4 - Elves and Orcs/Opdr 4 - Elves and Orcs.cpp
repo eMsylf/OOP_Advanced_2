@@ -4,14 +4,15 @@
 #include <iostream>
 #include "Elf.h"
 #include "Orc.h"
+#include "Farmer.h"
+
 int main()
 {
-    Elf elf = Elf("hurpadur");
-    Orc orc = Orc("aaaaaaay");
-    std::cout << elf.name << std::endl;
-    std::cout << orc.name << std::endl;
+    Elf* elf = new Elf("hurpadur");
+    Orc* orc = new Orc("aaaaaaay");
 
-
+    elf->render();
+    orc->render();
 
     std::cout << "Type something and press enter!\n";
     std::string a;
