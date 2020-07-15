@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <thread>
+#include "ConcurrentVector.h"
 
 //void justJoin(std::thread& _thread);
 //void justDetach(std::thread& _thread);
@@ -20,13 +21,49 @@ void square(int x) {
     exampleNumber += x * x;
 }
 
-int main()
-{
-    std::thread thread(&square, 25);
-    thread.join();
-    //thread.detach();
+void threadExampleEdwin() {
+    ConcurrentVector concVec;
+    concVec.AddNumber(exampleNumber); // 0
+
+    std::thread thread(&square, 5);
+    concVec.AddNumber(exampleNumber); // 0
+
+    std::thread thread2(&square, 12);
+    thread.detach();
+    thread2.detach();
+    concVec.AddNumber(exampleNumber); // 0
+
+    //thread.join();
+    concVec.AddNumber(exampleNumber); // both results
+
+    concVec.AddNumber(exampleNumber); // both results
+    std::cout << "accum = " << exampleNumber << std::endl;
+}
+
+class Task {
+public:
+    void square(int x) {
+        std::cout << "Hello from thread " << std::this_thread::get_id() << std::endl;
+        exampleNumber += x * x;
+    }
+};
+
+void threadMemberFunctionExampleEdwin() {
+    Task* taskPtr = new Task();
+
+    std::thread thread(&Task::square, taskPtr, 25);
+    //thread.join(); // wait for thread completion
+    thread.detach(); // racecondition! cout below reached before thread finishes...
+
     std::cout << "accum = " << exampleNumber << std::endl;
 
+    delete taskPtr;
+}
+
+int main()
+{
+    threadExampleEdwin();
+    //threadMemberFunctionExampleEdwin();
     return 0;
 
 
