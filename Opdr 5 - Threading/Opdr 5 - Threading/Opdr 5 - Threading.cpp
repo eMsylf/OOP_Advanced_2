@@ -21,16 +21,18 @@ void square(int x) {
     exampleNumber += x * x;
 }
 
-void threadExampleEdwin() {
+void exampleEdwinThread() {
     ConcurrentVector concVec;
     concVec.AddNumber(exampleNumber); // 0
 
-    std::thread thread(&square, 5);
+    std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     concVec.AddNumber(exampleNumber); // 0
 
-    std::thread thread2(&square, 12);
+    std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
+    std::thread thread3(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     thread.detach();
-    thread2.detach();
+    thread2.join();
+    thread3.join();
     concVec.AddNumber(exampleNumber); // 0
 
     //thread.join();
@@ -48,7 +50,7 @@ public:
     }
 };
 
-void threadMemberFunctionExampleEdwin() {
+void exampleEdwinThreadMemberFunction() {
     Task* taskPtr = new Task();
 
     std::thread thread(&Task::square, taskPtr, 25);
@@ -62,24 +64,9 @@ void threadMemberFunctionExampleEdwin() {
 
 int main()
 {
-    threadExampleEdwin();
-    //threadMemberFunctionExampleEdwin();
+    exampleEdwinThread();
+    exampleEdwinThreadMemberFunction();
     return 0;
-
-
-
-    //std::cout << "Hello World!\n";
-    //
-    ////threadExperiment1();
-
-    ////threadingExampleEdwin();
-    //std::thread anotherThread(square, 254);
-
-    ////anotherThread.join();
-    ////anotherThread.detach();
-
-
-    //return 0;
 }
 
 //void threadingExampleEdwin() {
