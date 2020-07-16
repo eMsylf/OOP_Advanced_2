@@ -6,6 +6,15 @@ void ConcurrentVector::AddNumber(int number)
 	std::cout << "added " << number << " to list position " << vector.size() << std::endl;
 }
 
+void ConcurrentVector::AddNumbers(std::vector<int> numbers)
+{
+	std::cout << "Start adding numbers";
+	for (size_t i = 0; i < numbers.size(); i++)
+	{
+		vector.push_back(numbers[i]);
+	}
+}
+
 void ConcurrentVector::DisplayValues()
 {
 	std::cout << "\n-----------\nDisplay values:\n";

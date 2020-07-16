@@ -2,36 +2,39 @@
 // Bob Jeltes
 
 #include <iostream>
+#include <vector>
 #include <thread>
 #include <mutex>
-#include "ConcurrentVector.h"
+//#include "ConcurrentVector.h"
 
 int exampleNumber = 0;
-std::mutex mutex;
+//std::mutex mutex;
 
 void square(int x) {
     std::cout << "Squaring from thread " << std::this_thread::get_id() << std::endl;
     exampleNumber += x * x;
 }
 
-void pointerVersion() {
-    ConcurrentVector* concVec = new ConcurrentVector();
-    std::lock_guard<std::mutex> ayylmao(mutex);
+void calculate() {
+    std::vector<std::thread> threads;
+    for (int i = 0; i <= 100; i++)
+    {
+        threads.push_back(std::thread(&square, i));
+    }
 
-    concVec->DisplayValues();
-    std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    square(10);
-    std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    square(10);
-    //std::thread thread3(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    thread.join();
-    thread2.join();
-    //thread3.join();
-    concVec->DisplayValues();
+    for (std::thread& thread : threads)
+    {
+        thread.join();
+    }
+    std::cout << "Total = " << exampleNumber << std::endl;
 }
 
 int main()
 {
-    pointerVersion();
+    for (int i = 0; i < 3; i++)
+    {
+        exampleNumber = 0;
+        calculate();
+    }
     return 0;
 }

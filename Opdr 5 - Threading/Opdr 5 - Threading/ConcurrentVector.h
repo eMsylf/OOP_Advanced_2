@@ -9,6 +9,8 @@ public:
 	std::vector<int> vector;
 
 	void AddNumber(int number);
+	void AddNumbers(std::vector<int> numbers);
+
 	void DisplayValues();
 };
 
