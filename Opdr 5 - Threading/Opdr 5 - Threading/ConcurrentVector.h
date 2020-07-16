@@ -7,7 +7,6 @@ class ConcurrentVector
 {
 public:
 	std::vector<int> vector;
-	bool busy;
 
 	void AddNumber(int number);
 	void DisplayValues();

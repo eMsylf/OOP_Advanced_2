@@ -6,15 +6,6 @@
 #include <mutex>
 #include "ConcurrentVector.h"
 
-//void justJoin(std::thread& _thread);
-//void justDetach(std::thread& _thread);
-//void joinThenDetach(std::thread& _thread);
-//void detachThenJoin(std::thread& _thread);
-//void hurpadur();
-////void threadExperiment1();
-//void threadingExampleEdwin();
-//void square(int x);
-
 int exampleNumber = 0;
 std::mutex mutex;
 
@@ -23,128 +14,24 @@ void square(int x) {
     exampleNumber += x * x;
 }
 
-void exampleEdwinThread() {
-    ConcurrentVector concVec;
-    std::lock_guard<std::mutex> flurp(mutex);
-    
-    std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    square(10);
-    std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    thread.join();
-    thread2.join();
-    concVec.DisplayValues();
-    concVec.AddNumber(exampleNumber);
-    
-    std::cout << "accum = " << exampleNumber << std::endl;
-}
-
 void pointerVersion() {
     ConcurrentVector* concVec = new ConcurrentVector();
+    std::lock_guard<std::mutex> ayylmao(mutex);
 
     concVec->DisplayValues();
     std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     square(10);
     std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     square(10);
-    std::thread thread3(&ConcurrentVector::AddNumber, concVec, exampleNumber);
+    //std::thread thread3(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     thread.join();
     thread2.join();
-    thread3.join();
+    //thread3.join();
     concVec->DisplayValues();
-}
-
-class Task {
-public:
-    void square(int x) {
-        std::cout << "Hello from thread " << std::this_thread::get_id() << std::endl;
-        exampleNumber += x * x;
-    }
-};
-
-void exampleEdwinThreadMemberFunction() {
-    Task* taskPtr = new Task();
-
-    std::thread thread(&Task::square, taskPtr, 25);
-    //thread.join(); // wait for thread completion
-    thread.detach(); // racecondition! cout below reached before thread finishes...
-
-    std::cout << "accum = " << exampleNumber << std::endl;
-
-    delete taskPtr;
 }
 
 int main()
 {
-    //exampleEdwinThread();
     pointerVersion();
-    //exampleEdwinThreadMemberFunction();
     return 0;
 }
-
-//void threadingExampleEdwin() {
-//    //std::thread anotherThread(&square, 254);
-//
-//    //anotherThread.join();
-//    //anotherThread.detach();
-//
-//    std::cout << "accum = " << exampleNumber << std::endl;
-//}
-//
-//void square(int x) {
-//    std::cout << "Hello from thread" << std::this_thread::get_id() << std::endl;
-//    exampleNumber += x * x;
-//}
-//
-//void threadExperiment1() {
-//    // How do I do the thing with the threads?
-//    std::thread thread1(hurpadur, 25);
-//    std::thread thread2;
-//
-//    std::cout << "Input a number between 0 and 3";
-//    int input;
-//    std::cin >> input;
-//    switch (input)
-//    {
-//    case 0:
-//        justJoin(thread1);
-//        break;
-//    case 1:
-//        justDetach(thread1);
-//        break;
-//    case 2:
-//        joinThenDetach(thread1);
-//        break;
-//    case 3:
-//        detachThenJoin(thread1);
-//        break;
-//    default:
-//        break;
-//    }
-//}
-//
-//// Werkt??
-//void justJoin(std::thread& _thread) {
-//    _thread.join();
-//}
-//
-//// Lijkt niks te doen
-//void justDetach(std::thread& _thread) {
-//    _thread.detach();
-//}
-//
-//// Geeft error
-//void joinThenDetach(std::thread& _thread) {
-//    _thread.join();
-//    _thread.detach();
-//}
-//
-//// Geeft error
-//void detachThenJoin(std::thread& _thread) {
-//    _thread.detach();
-//    _thread.join();
-//}
-//
-//void hurpadur() {
-//
-//    std::cout << "Write a thing here" << std::endl;
-//}
