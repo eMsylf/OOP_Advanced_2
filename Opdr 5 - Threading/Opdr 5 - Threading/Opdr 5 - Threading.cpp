@@ -24,15 +24,29 @@ void square(int x) {
 void exampleEdwinThread() {
     ConcurrentVector concVec;
 
-    concVec.DisplayValues();
+    //concVec.DisplayValues();
     std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     square(10);
     std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
-    concVec.DisplayValues();
-    thread.detach();
-    concVec.DisplayValues();
+    thread.join();
     thread2.join();
     concVec.DisplayValues();
+    concVec.AddNumber(exampleNumber);
+    
+    std::cout << "accum = " << exampleNumber << std::endl;
+}
+
+void pointerVersion() {
+    ConcurrentVector* concVec = new ConcurrentVector();
+
+    //concVec.DisplayValues();
+    std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
+    square(10);
+    std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
+    thread.join();
+    thread2.join();
+    concVec->DisplayValues();
+    concVec->AddNumber(exampleNumber);
 
     std::cout << "accum = " << exampleNumber << std::endl;
 }
@@ -59,7 +73,8 @@ void exampleEdwinThreadMemberFunction() {
 
 int main()
 {
-    exampleEdwinThread();
+    //exampleEdwinThread();
+    pointerVersion();
     //exampleEdwinThreadMemberFunction();
     return 0;
 }
