@@ -1,12 +1,13 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include <mutex>
+#include <thread>
+#include <chrono>
 class ConcurrentVector
 {
 public:
 	std::vector<int> vector;
-	//std::mutex mutex;
+	bool busy;
 
 	void AddNumber(int number);
 	void DisplayValues();

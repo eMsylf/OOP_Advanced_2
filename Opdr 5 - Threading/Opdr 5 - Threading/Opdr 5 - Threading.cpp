@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <thread>
+#include <mutex>
 #include "ConcurrentVector.h"
 
 //void justJoin(std::thread& _thread);
@@ -15,16 +16,17 @@
 //void square(int x);
 
 int exampleNumber = 0;
+std::mutex mutex;
 
 void square(int x) {
-    std::cout << "Hello from thread " << std::this_thread::get_id() << std::endl;
+    std::cout << "Squaring from thread " << std::this_thread::get_id() << std::endl;
     exampleNumber += x * x;
 }
 
 void exampleEdwinThread() {
     ConcurrentVector concVec;
-
-    //concVec.DisplayValues();
+    std::lock_guard<std::mutex> flurp(mutex);
+    
     std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     square(10);
     std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
@@ -39,16 +41,16 @@ void exampleEdwinThread() {
 void pointerVersion() {
     ConcurrentVector* concVec = new ConcurrentVector();
 
-    //concVec.DisplayValues();
+    concVec->DisplayValues();
     std::thread thread(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     square(10);
     std::thread thread2(&ConcurrentVector::AddNumber, concVec, exampleNumber);
+    square(10);
+    std::thread thread3(&ConcurrentVector::AddNumber, concVec, exampleNumber);
     thread.join();
     thread2.join();
+    thread3.join();
     concVec->DisplayValues();
-    concVec->AddNumber(exampleNumber);
-
-    std::cout << "accum = " << exampleNumber << std::endl;
 }
 
 class Task {

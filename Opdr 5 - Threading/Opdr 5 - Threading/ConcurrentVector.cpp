@@ -1,10 +1,18 @@
 #include "ConcurrentVector.h"
-#include <iostream>
 
 void ConcurrentVector::AddNumber(int number)
 {
+	std::cout << "Thread " << std::this_thread::get_id() << " started" << std::endl;
+	while (busy) {
+		std::cout << "Another thread is busy. Trying again in one second: "<< std::this_thread::get_id() << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
+	busy = true;
+	std::cout << "Thread " << std::this_thread::get_id() << " is now busy" << std::endl;
 	vector.push_back(number);
 	std::cout << "added " << number << " to list position " << vector.size() << std::endl;
+	busy = false;
+	std::cout << "Thread " << std::this_thread::get_id() << " is now finished" << std::endl;
 }
 
 void ConcurrentVector::DisplayValues()
