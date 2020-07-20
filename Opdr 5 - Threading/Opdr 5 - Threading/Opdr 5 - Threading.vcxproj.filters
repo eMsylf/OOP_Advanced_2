@@ -21,9 +21,15 @@
     <ClCompile Include="ConcurrentVector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadsTutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConcurrentVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadsTutorial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

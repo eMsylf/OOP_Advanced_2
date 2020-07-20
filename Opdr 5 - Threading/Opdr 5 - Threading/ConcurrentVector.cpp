@@ -2,12 +2,19 @@
 
 void ConcurrentVector::AddNumber(int number)
 {
+	//std::mutex mutex;
+	//mutex.lock();
+	std::condition_variable cVar;
+	cVar.notify_all();
 	vector.push_back(number);
 	std::cout << "added " << number << " to list position " << vector.size() << std::endl;
+	//mutex.unlock();
 }
 
 void ConcurrentVector::AddNumbers(std::vector<int> numbers)
 {
+	std::condition_variable cVar;
+	cVar.notify_all();
 	std::cout << "Start adding numbers";
 	for (size_t i = 0; i < numbers.size(); i++)
 	{

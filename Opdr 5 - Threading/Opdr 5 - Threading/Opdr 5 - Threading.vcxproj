@@ -149,9 +149,11 @@
   <ItemGroup>
     <ClCompile Include="ConcurrentVector.cpp" />
     <ClCompile Include="Opdr 5 - Threading.cpp" />
+    <ClCompile Include="ThreadsTutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConcurrentVector.h" />
+    <ClInclude Include="ThreadsTutorial.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
