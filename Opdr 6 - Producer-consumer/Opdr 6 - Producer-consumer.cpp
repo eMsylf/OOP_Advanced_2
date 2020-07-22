@@ -10,9 +10,9 @@ int productionIterations = 500;
 bool done = false;
 std::queue<int> goods;
 
-std::condition_variable condition;
-std::mutex mutex;
+//std::condition_variable condition;
 //std::lock_guard<std::mutex> lock;
+std::mutex mutex;
 
 void producer() {
     for (int i = 0; i < productionIterations; ++i) {
@@ -41,11 +41,10 @@ void consumer() {
 int main() {
     std::thread producerThread(producer);
     std::thread consumerThread(consumer);
-    //producer();
-    //consumer();
-    //condition.notify_all();
     producerThread.join();
     consumerThread.join();
+    //producer();
+    //consumer();
 
     std::cout << "Net: " << counter << std::endl
         << "Goods queue size: " << goods.size() << std::endl
