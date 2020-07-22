@@ -11,7 +11,7 @@ int goodsProduced = 0;
 int goodsConsumed = 0;
 int loopCounter = 0;
 
-int productionIterations = 1000000;
+int productionIterations = 2000000;
 bool done = false;
 std::queue<int> goods;
 
