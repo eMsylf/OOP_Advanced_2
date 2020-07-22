@@ -32,10 +32,17 @@ void ConcurrentVector::DisplayValues()
 {
 	mutex.lock();
 	std::cout << "\n-----------\nDisplay values:\n";
+	std::string output = "";
 	for (size_t i = 0; i < vector.size(); i++)
 	{
-		std::cout << "Value " << i << ": " << vector[i] << std::endl;
+		//std::cout << "Value " << i << ": " << vector[i] << std::endl;
+		std::string stringIterator = std::to_string(i);
+		output += "Value ";
+		output += stringIterator;
+		output += "\: ";
+		output += std::to_string(vector[i]);
+		output += '\n';
 	}
-	std::cout << std::endl;
+	std::cout << output;
 	mutex.unlock();
 }

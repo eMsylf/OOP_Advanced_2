@@ -19,15 +19,15 @@ void square(int x) {
 int main()
 {
     ConcurrentVector* concVector = new ConcurrentVector();
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 5; i++)
     {
-        std::thread th1(&ConcurrentVector::AddManySameNumbers, concVector, 100, 1);
+        std::thread th1(&ConcurrentVector::AddManySameNumbers, concVector, 1000, 1);
         th1.detach();
     }
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 5; i++)
     {
-        std::thread th2(&ConcurrentVector::AddManySameNumbers, concVector, 100, 2);
+        std::thread th2(&ConcurrentVector::AddManySameNumbers, concVector, 1000, 2);
         th2.detach();
     }
     
