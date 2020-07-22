@@ -1,3 +1,6 @@
+// Opdr 6 - Producer-consumer
+// Example code provided by Edwin van Ouwerkerk Moria, modified by Bob Jeltes
+
 #include <queue>
 #include <thread>
 #include <iostream>
