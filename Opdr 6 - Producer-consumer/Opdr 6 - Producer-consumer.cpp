@@ -4,9 +4,11 @@
 #include <condition_variable>
 
 int counter = 0;
+int goodsProduced = 0;
+int goodsConsumed = 0;
 int loopCounter = 0;
 
-int productionIterations = 500;
+int productionIterations = 1000000;
 bool done = false;
 std::queue<int> goods;
 
@@ -19,6 +21,7 @@ void producer() {
         goods.push(i);
         counter++;
         loopCounter++;
+        goodsProduced++;
         cv.notify_one();
     }
     done = true;
@@ -32,6 +35,7 @@ void consumer() {
             goods.pop();
             counter--;
             loopCounter++;
+            goodsConsumed++;
         }
         lck.unlock();
         cv.notify_one();
@@ -46,5 +50,7 @@ int main() {
 
     std::cout << "Net: " << counter << std::endl
         << "Goods queue size: " << goods.size() << std::endl
-        << "Loops completed: " << loopCounter << " out of the target " << productionIterations * 2 << std::endl;
+        << "Loops completed: " << loopCounter << " out of the target " << productionIterations * 2 << std::endl
+        << "Goods produced/consumed: " << goodsProduced << " / " << goodsConsumed << std::endl;
+
 }
