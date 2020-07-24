@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Opdr 7 - Template Functie.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CustomQueue.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
