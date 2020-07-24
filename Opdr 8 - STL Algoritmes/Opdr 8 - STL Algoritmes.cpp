@@ -86,7 +86,6 @@ int main() {
     std::cout << "2)" << std::endl;
     std::vector<double> numbers2(numbers.size());
     std::copy(numbers.begin(), numbers.end(), numbers2.begin());
-    
 
     // 3) 
     std::cout << "3)" << std::endl;
