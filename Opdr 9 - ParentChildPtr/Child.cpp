@@ -21,7 +21,7 @@ Child& Child::operator=(const Child& other) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Child& child) {
-    os << " child name: " << child.name;
+    os << "child name: " << child.name;
     return os;
 }
 

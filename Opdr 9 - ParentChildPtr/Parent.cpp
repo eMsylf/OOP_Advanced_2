@@ -4,18 +4,18 @@
 Parent::Parent(std::string name) {
     this->name = name;
     std::string childName = "ChildOf" + name;
-    this->child = new Child(childName);
+    this->child = std::make_unique<Child>(childName);
 }
 
 Parent::Parent(const Parent& other) {
     std::cout << "Parent cctor" << std::endl;
     this->name = other.name;
-    this->child = new Child(*other.child);
+    this->child = std::make_unique<Child>(*other.child);
 }
 
 Parent::~Parent() {
     std::cout << "Parent dtor : " << this->name << std::endl;
-    delete this->child;
+    //delete this->child;
 }
 
 Parent& Parent::operator=(const Parent& other) {
@@ -24,8 +24,8 @@ Parent& Parent::operator=(const Parent& other) {
     if (this == &other) return *this;
 
     this->name = other.name;
-    delete this->child;
-    this->child = new Child(*other.child);
+    //delete this->child;
+    this->child = std::make_unique<Child>(*other.child);
 
     return *this;
 }

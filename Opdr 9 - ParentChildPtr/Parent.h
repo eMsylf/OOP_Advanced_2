@@ -13,8 +13,8 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Parent& parent);
 
+    std::unique_ptr<Child> child;
 private:
     std::string name;
-    Child* child;
 };
 
