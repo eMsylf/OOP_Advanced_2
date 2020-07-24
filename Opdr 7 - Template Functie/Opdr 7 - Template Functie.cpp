@@ -89,17 +89,25 @@ int main()
     CustomQueue<int> customQ;
     int input = 0;
     while (input >= 0) {
-        std::cout << "Input a positive integer to add it to the queue" << std::endl;
+        std::cout << "Input a positive integer to add it to the queue." << std::endl
+            << "Input a negative integer to stop adding." << std::endl;
         std::cin >> input;
-        std::cout << "Input: " << input << std::endl;
+        customQ.put(input);
+        std::cout << "Input: " << input << std::endl
+            << "Current queue: " << customQ.size() << std::endl;
+
+        customQ.print();
     }
 
-    /*char chInput;
-    while (chInput) {
-        std::cout << "Input a 'p' to pop the first number in the queue";
+    char chInput = 'p';
+    while (customQ.size() > 0 && chInput == 'p') {
+        std::cout << "Input 'p' to pop the first number in the queue" << std::endl
+            << "Input anything else to quit" << std::endl;
         std::cin >> chInput;
-        if (chInput = 'p') {
+        std::cout << "Item popped from the queue: " << customQ.get() << std::endl
+            << "Items remaining: " << customQ.size() << std::endl;
+        customQ.print();
+    }
 
-        }
-    }*/
+    std::cout << "Queue is empty. Quitting..." << std::endl;
 }
