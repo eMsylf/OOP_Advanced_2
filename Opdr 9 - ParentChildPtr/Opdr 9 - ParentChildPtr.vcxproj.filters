@@ -32,5 +32,8 @@
     <ClInclude Include="Parent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Opdr 9 - ParentChildPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
