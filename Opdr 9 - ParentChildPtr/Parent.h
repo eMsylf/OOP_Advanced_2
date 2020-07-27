@@ -10,6 +10,12 @@ public:
     Parent(const Parent& other);
     virtual ~Parent();
     Parent& operator=(const Parent& other);
+    
+    // OPDR 10 - MOVE OPERATOR & CONSTRUCTOR
+    Parent(Parent&& other) noexcept;
+    Parent& operator=(Parent&& other) noexcept;
+
+    void reset();
 
     friend std::ostream& operator<<(std::ostream& os, const Parent& parent);
 

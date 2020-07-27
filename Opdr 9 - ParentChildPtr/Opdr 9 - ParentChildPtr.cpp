@@ -1,6 +1,17 @@
 #include <iostream>
 #include "Parent.h"
 
+void printParent(Parent& parent) {
+    std::cout << "Parent info: "
+        << parent
+        << std::endl
+        /*<< "Parent use count: "
+        << parent.use_count()
+        << std::endl*/
+        << "------------"
+        << std::endl;
+}
+
 int main() {
     std::shared_ptr<Parent> p1 = std::make_shared<Parent>("Parent1");
     std::cout << "p1: " << *p1 << std::endl;
@@ -33,5 +44,11 @@ int main() {
     std::cout << *p3 << std::endl;
     std::cout << *p4 << std::endl;
 
+    // OPDR 10
+    std::cout << "Opdracht 10" << std::endl;
+    *p3 = std::move(*p4); // Move operator wordt hierbij aangeroepen
+
+    printParent(*p3); // Move operator wordt hier ook bij aangeroepen
+    std::cout << "=======END OF MAIN=======" << std::endl;
     return 0;
 }

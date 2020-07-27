@@ -30,6 +30,31 @@ Parent& Parent::operator=(const Parent& other) {
     return *this;
 }
 
+Parent::Parent(Parent&& other) noexcept
+{
+    std::cout << "Movement constructor from parent '" << other.name << "' @" << &other << " to parent @" << this << std::endl;
+    name = std::move(other.name);
+    child = std::move(other.child);
+    other.reset();
+}
+
+Parent& Parent::operator=(Parent&& other) noexcept
+{
+    std::cout << "Move operator =" << std::endl;
+    if (this != &other) {
+        name = std::move(other.name);
+        child = std::move(other.child);
+        other.reset();
+    }
+    return *this;
+}
+
+void Parent::reset()
+{
+    name = "name not set";
+    child = nullptr;
+}
+
 std::ostream& operator<<(std::ostream& os, const Parent& parent) {
     os << "parent name: " << parent.name << "," << *parent.child;
     return os;
