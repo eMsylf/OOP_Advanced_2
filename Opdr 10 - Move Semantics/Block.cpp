@@ -31,6 +31,7 @@ Block& Block::operator=(const Block& other) {
     return *this;
 }
 
+
 #ifdef MOVESEMANTICS
 
 // move-constructor
@@ -39,15 +40,32 @@ Block::Block(Block&& other) noexcept {
     name = std::move(other.name);
     data = other.data;
     size = other.size;
-
-    // 'reset' 't originele object
-    other.name = "(nodata: has been moved)";
-    other.size = 0;
-    other.data = nullptr;
+    other.reset();
 }
 
 //TODO: move-assignment operator
+Block& Block::operator=(Block&& other) noexcept
+{
+    // TODO: insert return statement here
+    std::cout << "Move operator =" << std::endl;
+    if (this != &other) {
+        name = std::move(other.name);
+        data = std::move(other.data);
+        size = std::move(other.size);
+        other.reset(); // Dit niet aanroepen zorgt voor een exception
+    }
+    return *this;
+}
+void Block::reset()
+{
+    // 'reset' 't originele object
+    name = "(nodata: has been moved)";
+    size = 0;
+    data = nullptr;
+}
 #endif
+
+
 
 std::ostream& operator<<(std::ostream& os, const Block& block) {
     os << "Block @" << &block << " name:" << block.name << " size:" << block.size;

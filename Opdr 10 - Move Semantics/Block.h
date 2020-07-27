@@ -7,11 +7,11 @@
 #include <string>
 #include <ostream>
 
-#ifdef _MSC_VER
+//#ifdef _MSC_VER
 //#include "bw_msposix.h"
-#else
-#define _NOEXCEPT noexcept
-#endif
+//#else
+//#define _NOEXCEPT noexcept
+//#endif
 
 class Block {
 public:
@@ -25,6 +25,9 @@ public:
         // nog nodig voor de 'big five'
     Block(Block&& other) noexcept; // move-constructor
     //TODO: move-assignment operator
+    Block& operator=(Block&& other) noexcept;
+
+    void reset();
 #endif
 
 private:
