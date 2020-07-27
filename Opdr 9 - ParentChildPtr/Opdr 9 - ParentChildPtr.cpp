@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Parent.h"
-#include "Opdr 9 - ParentChildPtr.h"
 
 int main() {
     std::shared_ptr<Parent> p1 = std::make_shared<Parent>("Parent1");
